@@ -12,7 +12,7 @@ These columns are commonly used in `WHERE`, `JOIN`, and `ORDER BY` clauses.
 
 ## 2. SQL CREATE INDEX Commands
 
-Save the following in `database_index.sql`:
+Save the following in `database_index.sql` (file created separately):
 
 ```sql
 -- User table indexes
