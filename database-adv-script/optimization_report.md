@@ -9,6 +9,18 @@ This document outlines the steps to optimize a SQL query for retrieving booking 
       - User details
       - Property details
       - Payment details
+    - Example initial query:
+      ```sql
+      SELECT
+        bookings.*,
+        users.*,
+        properties.*,
+        payments.*
+      FROM bookings
+      JOIN users ON bookings.user_id = users.id
+      JOIN properties ON bookings.property_id = properties.id
+      JOIN payments ON bookings.payment_id = payments.id;
+      ```
     - Save this query in a file named `perfomance.sql`.
 
 2. **Analyze Query Performance**

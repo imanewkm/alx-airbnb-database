@@ -11,7 +11,8 @@ SELECT
     p.location,
     pay.id AS payment_id,
     pay.amount,
-    pay.status
+    pay.status,
+    pay.payment_date
 FROM
     bookings b
 JOIN users u ON b.user_id = u.id
