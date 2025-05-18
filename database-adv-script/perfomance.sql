@@ -17,9 +17,9 @@ FROM
     bookings b
 JOIN users u ON b.user_id = u.id
 JOIN properties p ON b.property_id = p.id
-LEFT JOIN payments pay ON b.id = pay.booking_id;
+LEFT JOIN payments pay ON b.id = pay.booking_id
+WHERE b.start_date >= '2023-01-01' AND pay.status = 'completed';
 
--- Analyze performance with EXPLAIN
 EXPLAIN
 SELECT
     b.id AS booking_id,
@@ -38,6 +38,8 @@ FROM
     bookings b
 JOIN users u ON b.user_id = u.id
 JOIN properties p ON b.property_id = p.id
+LEFT JOIN payments pay ON b.id = pay.booking_id
+WHERE b.start_date >= '2023-01-01' AND pay.status = 'completed';
 LEFT JOIN payments pay ON b.id = pay.booking_id;
 
 -- Possible inefficiencies:
@@ -49,8 +51,6 @@ LEFT JOIN payments pay ON b.id = pay.booking_id;
 -- (Run these CREATE INDEX statements separately if not already indexed)
 -- CREATE INDEX idx_bookings_user_id ON bookings(user_id);
 -- CREATE INDEX idx_bookings_property_id ON bookings(property_id);
--- CREATE INDEX idx_payments_booking_id ON payments(booking_id);
-
 SELECT
     b.id AS booking_id,
     b.start_date,
@@ -62,5 +62,8 @@ SELECT
 FROM
     bookings b
 JOIN users u ON b.user_id = u.id
+JOIN properties p ON b.property_id = p.id
+LEFT JOIN payments pay ON b.id = pay.booking_id
+WHERE b.start_date >= '2023-01-01' AND pay.status = 'completed';
 JOIN properties p ON b.property_id = p.id
 LEFT JOIN payments pay ON b.id = pay.booking_id;
